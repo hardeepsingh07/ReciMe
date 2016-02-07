@@ -1,45 +1,117 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>ReciMe</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <title>ReciMe</title>
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
-	<script src="/javascripts/recime.js"></script>
+ <script src="/javascripts/jquery.js"></script>
+ <script src="/javascripts/bootstrap.js"></script>
+ <script src="/javascripts/validator.js"></script>
+ <script src="/javascripts/form.js"></script>
+ <script src="/javascripts/jwork.js"></script>
+ <script src="/javascripts/recime.js"></script>
+ <script src="/javascripts/jquery.mobile.iscrollview"></script>
+ <script src="/javascripts/jquery.mobile-1.4.0-beta.1.min"></script>
+ <script src="/javascripts/iscroll"></script>
+ <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+ <link rel="stylesheet" href="/stylesheets/style.css">
+ <link rel="stylesheet" href="/stylesheets/jquery.mobile.iscrollview">
+ <link rel="stylesheet" href="/stylesheets/jquery.mobile.iscrollview-pull">
+ <link rel="stylesheet" href="/stylesheets/jquery.mobile-1.4.0-beta.1.min">
 </head>
 <body>
-	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
-	<script src="https://code.highcharts.com/maps/modules/data.js"></script>
-	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+ <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+ <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+ <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+ <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
 
 
-	<div id="container" style="max-width: 100%"></div>
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
+ <div>
+   <div id="container" style="max-width: 100%"></div>
+ </br>
+</div>
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Recipes</h4>
-				</div>
-				<div class="modal-body">
-					<div data-role="content">
-						<div class="example-wrapper" data-iscroll>
-							<ul data-role="listview"  id="movie-list" data-theme="a">
 
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<!--Add Recepie Buttom -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add_recipe_modal" onclick="resetForm()">Add New Recipe</button>
+<div id="add_recipe_modal" class="modal fade" role="document">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <a type="button" class="close" data-dismiss="modal">&times;</a>
+       <h4 class="modal-title">Add New Recipe</h4>
+     </div>
+     <div class="modal-body">
+       <form data-toggle="validator" role="form" id="recipe_form">
+         <div class="form-group">
+           <label for="title">Recipe Title:</label>
+           <input class="form-control" id="title" required/>
+         </div>
+         <div class="form-group">
+           <label for="country">Country of Origin:</label>
+           <input class="form-control" id="country" required/>
+           <br/>
+         </div>
+         <div clas="form-group">
+           <div id="ingredients_list">
+             <label for="ingredients">Ingredients:</label>
+             <div class="input-group">
+               <input class="ingredients form-control" id="ingredients" placeholder="Ingredient" data-error="There has to be at least one ingredient for this recipe" required/>
+               <span class="input-group-addon"></span>
+               <input class="quantity form-control" id="quantity" placeholder="Amount" data-error="How much of this ingredient is necessary?" val="+" required/>
+               <div class="help-block with-errors"></div>
+             </div>
+           </div>
+           <input type="button" style="width: 5; height: 5;" onclick="addListItem('ingredients');" placeholder="+"/>
+           <br/>
+         </div>
+         <div class="form-group">
+           <label for="steps">Steps:</label>
+           <div id="steps_list">
+             <input class="steps form-control" id="step" placeholder="Add Step" data-error="How am I supposed to make this if I dont know how!?" required/>
+           </div>
+           <input type="button" style="width: 5; height: 5;" onclick="addListItem('steps');" placeholder="+"/>
+         </div>
+         <br/>
+         <div class="form-group">
+           <label for="image">Dish Image Link:</label>
+           <input class="form-control" id="image"/>
+           <br/>
+         </div>
+       </form>
+       <div style="clear:both"></div>
+     </div>
+     <div class="modal-footer">
+       <button type="submit" class="btn btn-primary" onclick="submitForm()">Add</button>
+       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+     </div>
+   </div>
+
+ </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    ​
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Recipes</h4>
+      </div>
+      <div class="modal-body">
+        <div data-role="page" id="home">   
+          <div class="list-group" id="list_group">
+            <!--JQuery Data-->
+          </div>     
+        </div>  
+      </div>
+    </div>
+  </div>
+  ​
+</div>
+</div>
+
 </body>
 </html>

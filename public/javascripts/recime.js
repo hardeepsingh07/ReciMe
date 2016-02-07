@@ -56,13 +56,47 @@
             var text = e.point.name;
             var url = "/recipes?country=" + text;
             $.get(url, function(data, status){
-                //alert("Data: " + data + "\nStatus: " + status);
+              if(status = "SUCCESS") {
+                console.log(data);
+                $("#myModal").modal();
+                $.each(data, function(el, recipe){
+                    console.log(recipe);
+                    var item = "";
+                    item += "<a href='#'  class='list-group-item'>";
+                    item += "<div class='row'>";
+                    item += "<div class='col-md-4'>";
+                    item += "<img src='" + recipe.imageURL + "'width='60' height='60'>";
+                    item += "</div>";
+                    item += "<div class='col-md-4'>";
+                    item += "<p class='list-group-item-heading'>" + recipe.name + "</p>";
+                    item += "</div>";
+                    item += "<div class='col-md-4'>";
+                    item += "<p class='list-group-item-heading'>" + recipe.country + "</p>";
+                    item += "</div>";
+                    item += "</div>";
+                    item += "</a><div style='clear:both'></div>";
+                    $(item).appendTo("#list_group");
+               });
+              }
             });
-            $("#myModal").modal();
-
           },
         }
       }]
     });
 });
 });
+
+ function addListItem(list) {
+  var listItems = "";
+  switch(list){
+    case 'ingredients':
+    listItems += "<div class='input-group'><input class='ingredients new-line-item form-control' placeholder='Ingredient'/>";
+    listItems += "<span class='input-group-addon new-line-item'></span>";
+    listItems += "<input class='quantity new-line-item form-control' placeholder='Amount'/></div>";
+    break;
+    case 'steps':
+    listItems += "<input class='steps new-line-item form-control' placeholder='Add Step'/>";
+    break;
+  }
+  $(listItems).appendTo('#' + list + '_list');
+}
