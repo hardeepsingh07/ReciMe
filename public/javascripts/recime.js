@@ -56,11 +56,9 @@
             var text = e.point.name;
             var url = "/recipes?country=" + text;
             $.get(url, function(data, status){
-
-                //PLAY WITH DATA HERE
-                console.log(data);
-
+                //alert("Data: " + data + "\nStatus: " + status);
             });
+            $("#myModal").modal();
 
           },
         }

@@ -1,22 +1,45 @@
 <!DOCTYPE HTML>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
- <title>ReciMe</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>ReciMe</title>
 
- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
- <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
- <script src="/javascripts/recime.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+	<script src="/javascripts/recime.js"></script>
 </head>
 <body>
- <script src="https://code.highcharts.com/maps/highmaps.js"></script>
- <script src="https://code.highcharts.com/maps/modules/data.js"></script>
- <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
- <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+	<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
 
 
- <div id="container" style="max-width: 100%"></div>
- <p id="demo"> </p>
+	<div id="container" style="max-width: 100%"></div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Recipes</h4>
+				</div>
+				<div class="modal-body">
+					<div data-role="content">
+						<div class="example-wrapper" data-iscroll>
+							<ul data-role="listview"  id="movie-list" data-theme="a">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
