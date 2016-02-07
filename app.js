@@ -11,6 +11,12 @@ var users = require('./routes/users');
 var recipes = './lib/recipes/';
 var app = express();
 
+var mongoose = require('mongoose');
+require('./models/Recipe');
+
+mongoose.connect('mongodb://localhost/recipes');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
