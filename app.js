@@ -8,7 +8,23 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 require('./models/Recipe');
 
-mongoose.connect('mongodb://localhost/recipes');
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+
+var mongodbUri = 'mongodb://recimeadmin:friedfish@ds059365.mongolab.com:59365/recimedb';
+
+
+mongoose.connect(mongodbUri, options);
+/*
+var conn = mongoose.connection;
+
+conn.on('error', console.error.bind(console, 'connection error:'));
+
+
+conn.once('open', function() {
+  console.log("connected to db");
+});
+*/
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
