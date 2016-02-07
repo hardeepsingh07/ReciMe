@@ -10,4 +10,4 @@ var RecipeSchema = new mongoose.Schema({
   originalURL: String
 });
 
-mongoose.model('Recipe', RecipeSchema);
+mongoose.model('Recipe', RecipeSchema, 'Recipes');

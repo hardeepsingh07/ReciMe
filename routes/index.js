@@ -14,12 +14,26 @@ router.get('/map', function(req, res, next) {
 });
 
 router.get('/recipes', function(req, res, next) {
-  var query = Recipe.find({ country: req.query.country }).limit(10);
+
+/*
+  Recipe.findOne({country: req.query.country}, 'name country ingredients steps', function(err, recipe) {
+
+
+    console.log(recipe);
+    if (err) return handleError(err);
+    res.json(recipe);
+    console.log(recipe[0].name + ' ' + recipe[0].country + ' ' + recipe[0].steps);
+  });
+  */
+  console.log("countryname = " + req.query.country);
+
+  var query = Recipe.find({ country: req.query.country });
   query.exec(function(err, recipe) {
     if(err){ return next(err); }
-
+    console.log("recipe= " + recipe);
     res.json(recipe);
   });
+
 });
 
 router.post('/recipes', function(req, res, next) {
@@ -42,11 +56,12 @@ router.post('/recipes', function(req, res, next) {
 });
 
 router.param('recipe', function(req, res, next, id) {
+  console.log("id = " + id);
   var query = Recipe.findById(id);
 
   query.exec(function(err, recipe) {
     if(err){ return next(err); }
-    if(!data){ next(new Error('Recipe does not exist')); }
+    if(!recipe){ next(new Error('Recipe does not exist')); }
 
     req.recipe = recipe;
     return next();

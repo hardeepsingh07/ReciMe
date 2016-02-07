@@ -1,7 +1,7 @@
 [
     {
         "name": "Crock Pot Roast",
-        "country": "United States",
+        "country": "United States of America",
         "ingredients": [
             {
                 "quantity": "1",
@@ -126,7 +126,7 @@
     },
     {
         "name": "Big Night Pizza",
-        "country": "United States",
+        "country": "United States of America",
         "ingredients": [
             {
                 "quantity": "5 teaspoons",
@@ -183,7 +183,7 @@
     },
     {
         "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
-        "country": "United States",
+        "country": "United States of America",
         "ingredients": [
             {
                 "quantity": "2",
@@ -235,7 +235,7 @@
     },
     {
         "name": "Mic's Yorkshire Puds",
-        "country": "England",
+        "country": "United Kingdom",
         "ingredients": [
             {
                 "quantity": "200g",
@@ -281,7 +281,7 @@
     },
     {
         "name": "Old-Fashioned Oatmeal Cookies",
-        "country": "England",
+        "country": "United Kingdom",
         "ingredients": [
             {
                 "quantity": "1 cup",
@@ -361,7 +361,7 @@
     },
     {
         "name": "Blueberry Oatmeal Squares",
-        "country": "England",
+        "country": "United Kingdom",
         "ingredients": [
             {
                 "quantity": "2-1/2 cups",

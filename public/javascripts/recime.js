@@ -1,5 +1,5 @@
  $(function () {
-  
+
    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=world-population-density.json&callback=?', function (data) {
 
        // Initiate the chart
@@ -26,7 +26,7 @@
           max: 1000
         },
 
-        chart: {  
+        chart: {
          plotBackgroundImage:'http://www.ucreative.com/wp-content/uploads/2014/10/Food-photography-eastern-europe-city-illustrations-banner1.jpg'
        },
 
@@ -56,7 +56,10 @@
             var text = e.point.name;
             var url = "/recipes?country=" + text;
             $.get(url, function(data, status){
-              alert("Data: " + data + "\nStatus: " + status);
+
+                //PLAY WITH DATA HERE
+                console.log(data);
+
             });
 
           },
