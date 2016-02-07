@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var Country = mongoose.model('Country');
 var Recipe = mongoose.model('Recipe');
 
 /* GET home page. */
@@ -14,32 +13,35 @@ router.get('/map', function(req, res, next) {
   res.render('maps', { title: 'Maps' });
 });
 
-router.get('/country/:id/recipes', function(req, res, next) {
-  Country.find(function(err, recipes) {
-    if(err){ return next(err); }
-
-    res.json(recipes);
-  });
-
-});
-
-router.post('/country/:id/recipes', function(req, res, next) {
-  var recipe = new Recipe(req.body);
-
-  recipe.save(function(err, recipe) {
+router.get('/recipes', function(req, res, next) {
+  var query = Recipe.find({ country: req.query.country }).limit(10);
+  query.exec(function(err, recipe) {
     if(err){ return next(err); }
 
     res.json(recipe);
   });
 });
 
-router.param('country', function(req, res, next, country) {
+router.post('/recipes', function(req, res, next) {
+  console.log(req.body);
+  var recipe = new Recipe({
+    name: req.body.name,
+    country: req.body.country,
+    ingredients: req.body.ingredients,
+    steps: req.body.steps,
+    timers: req.body.timers,
+    imageURL: req.body.imageURL,
+    originalURL: req.body.originalURL
+  });
 
+  recipe.save(function(err, post) {
+    if(err){ return next(err); }
+
+    res.json(recipe);
+  });
 });
 
 router.param('recipe', function(req, res, next, id) {
-  console.log(req);
-  console.log(res);
   var query = Recipe.findById(id);
 
   query.exec(function(err, recipe) {
