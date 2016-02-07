@@ -63,4 +63,61 @@ function resetForm() {
   $('.has-error').each(function() {
     $(this).removeClass('has-error');
   });
+
+
+  $('#countries').select2({
+    ajax:{
+      url: "/data/countries.json",
+      dataType: "json",
+      delay: 250,
+      data: function(params) {
+        console.log(params);
+        return {
+          q: params.term,
+          page: params.page
+        };
+      },
+      processResults: function(data, params) {
+        params.page = params.page || 1;
+
+        console.log(data);
+        return {
+          results: data,
+          pagination: {
+            more: (params.page * 30) < data.total_count
+          }
+        };
+      },
+      cache: true,
+    },
+    escapeMarkup: function(markup){ return markup; },
+    placeholder: "Select a country",
+    templateResult: formatCountry,
+    templateSelection: formatCountryName,
+    minimumResultsForSearch: Infinity
+  });
+}
+
+function formatCountry(country) {
+  var markup = "<div class='select2-result-country clearfix'><div class='select2-result-country__name'>" + country.name + "</div></div>";
+  return markup;
+}
+
+function formatCountryName(country) {
+  return country.name || "Select a country";
+}
+
+function addListItem(list) {
+  var listItems = "";
+  switch(list){
+    case 'ingredients':
+      listItems += "<div class='input-group'><input class='ingredients new-line-item form-control' placeholder='Ingredient'/>";
+      listItems += "<span class='input-group-addon new-line-item'></span>";
+      listItems += "<input class='quantity new-line-item form-control' placeholder='Amount'/></div>";
+      break;
+    case 'steps':
+      listItems += "<input class='steps new-line-item form-control' placeholder='Add Step'/>";
+      break;
+  }
+  $(listItems).appendTo('#' + list + '_list');
 }

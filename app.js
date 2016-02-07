@@ -29,7 +29,7 @@ conn.once('open', function() {
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var recipes = './lib/data/';
+var data = './lib/data/';
 var app = express();
 
 
@@ -45,7 +45,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/data', express.static(recipes));
+app.use('/data', express.static(data));
 
 app.use('/', routes);
 app.use('/users', users);

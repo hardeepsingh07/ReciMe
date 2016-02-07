@@ -11,3 +11,8 @@
  text-align: center;
  color: gray;
 }
+
+a.add-item {
+  cursor: pointer;
+  text-decoration: none;
+}

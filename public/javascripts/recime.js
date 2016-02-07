@@ -42,7 +42,7 @@
          data : data,
          mapData: Highcharts.maps['custom/world'],
          joinBy: ['iso-a2', 'code'],
-         name: 'Population density',
+         name: 'Recipes',
          states: {
            hover: {
              color: '#0f770b '
@@ -57,8 +57,6 @@
             var url = "/recipes?country=" + text;
             $.get(url, function(data, status){
 
-                //PLAY WITH DATA HERE
-                console.log(data);
 
             });
 
