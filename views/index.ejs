@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <title>Highmaps Example</title>
+
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <style type="text/css">
+ #container {
+   height: 100%; 
+   width: 100%;
+   position:absolute; 
+   top: 0; 
+   left: 0; 
+   z-index: 0;
+}
+.loading {
+   margin-top: 10em;
+   text-align: center;
+   color: gray;
+}
+</style>
+<script type="text/javascript">
+$(function () {
+
+   $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=world-population-density.json&callback=?', function (data) {
+
+       // Initiate the chart
+       $('#container').highcharts('Map', {
+
+           title : {
+               text : 'RecieMe'
+           },
+
+           mapNavigation: {
+               enabled: true,
+               enableDoubleClickZoomTo: true
+           },
+
+           chart: {
+            polar: true,
+            backgroundColor:'#89cff0  ' 
+        },
+
+        colorAxis: {
+           stops: [
+           [0, '#F9A847 '],
+           [0.25, '#eeddee '],
+           [0.5, '#ff0000 '],
+           [0.75, '#5500aa '],
+           [1, '#000066 ']
+           ],
+           min: 0,
+           max: 100
+       },
+
+       series : [{
+           data : data,
+           mapData: Highcharts.maps['custom/world'],
+           joinBy: ['iso-a2', 'code'],
+           name: 'Population density',
+           states: {
+               hover: {
+                   color: '#0f770b '
+               }
+           },
+           tooltip: {
+               pointFormat: '{point.name}'
+           },
+           events: {
+               click: function (e) {
+                   var text = e.point.name;
+                   var xhttp = new XMLHttpRequest();
+                   xhttp.onreadystatechange = function() {
+                       if (xhttp.readyState == 4 && xhttp.status == 200) {
+                         document.getElementById("demo").innerHTML = xhttp.responseText;
+                     }
+                 };
+                 var url = "/recipes?country=" + text;
+                 xhttp.open("GET", url, true);
+                 xhttp.send();
+
+             }
+         }
+     }]
+ });
+});
+});
+</script>
+</head>
+<body>
+   <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+   
+   <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+   <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
+
+   <div id="container" style="max-width: 100%"></div>
+   <p id="demo"> </p>
+
+</body>
+</html>
