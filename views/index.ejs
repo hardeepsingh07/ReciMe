@@ -9,21 +9,7 @@
  <script src="/javascripts/validator.js"></script>
  <script src="/javascripts/form.js"></script>
  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
- <style type="text/css">
- #container {
-   height: 70%; 
-   width: 100%;
-   position:absolute; 
-   top: 0; 
-   left: 0; 
-   z-index: -100;
-}
-.loading {
-   margin-top: 10em;
-   text-align: center;
-   color: gray;
-}
-</style>
+ <link rel="stylesheet" href="/stylesheets/style.css">
 <script type="text/javascript">
 $(function () {
 
@@ -120,7 +106,7 @@ function addListItem(list) {
      </br>
    </div>
    <p id="demo"> </p>
-   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add_recipe_modal" onclick="resetForm()">Add New Recipe</button>
+   <button type="button" class="btn btn-info btn-lg" style="display:inline;margin-top:52%;margin-left:5em" data-toggle="modal" data-target="#add_recipe_modal" onclick="resetForm()">Add New Recipe</button>
    <div id="add_recipe_modal" class="modal fade" role="document">
      <div class="modal-dialog">
        <div class="modal-content">
