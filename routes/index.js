@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Recipe = mongoose.model('Recipe');
+var Country = mongoose.model('Country');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -34,6 +35,27 @@ router.get('/recipes', function(req, res, next) {
     res.json(recipe);
   });
 
+});
+
+router.get('/countries', function(req, res, next) {
+  var countryName;
+  var query = Country.find();
+  query.exec(function(err, countries) {
+    if(err){ return next(err); }
+
+    if(req.query.q) {
+      var matched = [];
+      for(var i=0; i<countries.length; i++){
+        countryName = countries[i].name.toLowerCase();
+        if(countryName.match(req.query.q.toLowerCase())){
+          matched.push(countries[i]);
+        }
+      }
+      res.json(matched);
+    } else {
+      res.json(countries);
+    }
+  });
 });
 
 router.post('/recipes', function(req, res, next) {

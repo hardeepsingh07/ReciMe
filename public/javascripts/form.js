@@ -1,7 +1,7 @@
 function submitForm() {
   var data = {};
   var name = $('#title').val();
-  var country = $('#country').val();
+  var country = $('#select2-countries-container').text();
   var ingredient = $('.ingredients');
   var ingredient_array = [];
   var amount = $('.quantity');
@@ -52,7 +52,6 @@ function submitForm() {
 
 function resetForm() {
   $('#title').val("");
-  $('#country').val("");
   $('.new-line-item').each(function() {
     $(this).remove();
   });
@@ -67,7 +66,7 @@ function resetForm() {
 
   $('#countries').select2({
     ajax:{
-      url: "/data/countries.json",
+      url: "/countries",
       dataType: "json",
       delay: 250,
       data: function(params) {
@@ -80,7 +79,6 @@ function resetForm() {
       processResults: function(data, params) {
         params.page = params.page || 1;
 
-        console.log(data);
         return {
           results: data,
           pagination: {
@@ -93,8 +91,7 @@ function resetForm() {
     escapeMarkup: function(markup){ return markup; },
     placeholder: "Select a country",
     templateResult: formatCountry,
-    templateSelection: formatCountryName,
-    minimumResultsForSearch: Infinity
+    templateSelection: formatCountryName
   });
 }
 
