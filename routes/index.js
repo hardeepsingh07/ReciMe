@@ -91,7 +91,9 @@ router.param('recipe', function(req, res, next, id) {
 });
 
 router.get('/recipes/:recipe', function(req, res, next) {
-  res.json(req.recipe);
+  //res.json(req.recipe);
+  console.log("from get: " + req.recipe);
+  res.render('recipes.ejs', { title: req.recipe.name, recipe: req.recipe });
 });
 
 module.exports = router;

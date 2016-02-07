@@ -71,7 +71,7 @@
                         var item = "";
                         item += "<div class='row'>";
                         item += "<div class='col-md-7'><a href='#'><img class='img-responsive' height='250px' width='250px' src='" + recipe.imageURL + "' alt></a></div>";
-                        item += "<div class='col-md-5'><h3>" + recipe.name + "</h3><a class='btn btn-primary' href='#'>View Details<span> \></span></a></div>";
+                        item += "<div class='col-md-5'><h3>" + recipe.name + "</h3><a class='btn btn-primary' href='/recipes/"+ recipe._id + "'>View Details<span> \></span></a></div>";
                         item += "</div><div style='clear:both'></div><hr>";
                         $(item).appendTo("#list_group");
                    });
