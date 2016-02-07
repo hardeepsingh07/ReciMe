@@ -63,14 +63,12 @@ function resetForm() {
     $(this).removeClass('has-error');
   });
 
-
   $('#countries').select2({
     ajax:{
       url: "/countries",
       dataType: "json",
       delay: 250,
       data: function(params) {
-        console.log(params);
         return {
           q: params.term,
           page: params.page
@@ -117,4 +115,9 @@ function addListItem(list) {
       break;
   }
   $(listItems).appendTo('#' + list + '_list');
+}
+
+function modalSwap() {
+  $(".modal").modal("toggle");
+  resetForm();
 }

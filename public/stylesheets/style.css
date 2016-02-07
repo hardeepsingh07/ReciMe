@@ -16,3 +16,19 @@ a.add-item {
   cursor: pointer;
   text-decoration: none;
 }
+
+.ui-content {
+    padding: 0 !important;
+}
+
+.ui-listview {
+    margin: 0 !important;
+}
+
+.example-wrapper, .example-wrapper div.iscroll-scroller {
+    width: 100% !important;
+}
+
+.list-group-item {
+	height: 60px;
+}

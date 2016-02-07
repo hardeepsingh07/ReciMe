@@ -56,13 +56,46 @@
             var text = e.point.name;
             var url = "/recipes?country=" + text;
             $.get(url, function(data, status){
-
-
+              $("#list_group").html("");
+              if(status = "SUCCESS") {
+                $("#myModal").modal();
+                $("#myModal h4").text("Recipes for " + text);
+                if(data.length < 1){
+                  var item = "<p>There are no recipes currently listed for this country, although you can add one <a id='modal_swap' href='#' onclick='modalSwap()'>here</a>!</p>";
+                  $("#list_group").html(item);
+                } else {
+                    $.each(data, function(el, recipe){
+                      if(!recipe.imageURL) {
+                        recipe.imageURL = "/images/no_image.png";
+                      }
+                        var item = "";
+                        item += "<div class='row'>";
+                        item += "<div class='col-md-7'><a href='#'><img class='img-responsive' height='250px' width='250px' src='" + recipe.imageURL + "' alt></a></div>";
+                        item += "<div class='col-md-5'><h3>" + recipe.name + "</h3><a class='btn btn-primary' href='#'>View Details<span> \></span></a></div>";
+                        item += "</div><div style='clear:both'></div><hr>";
+                        $(item).appendTo("#list_group");
+                   });
+                }
+              }
             });
-
           },
         }
       }]
     });
 });
 });
+
+ function addListItem(list) {
+  var listItems = "";
+  switch(list){
+    case 'ingredients':
+    listItems += "<div class='input-group'><input class='ingredients new-line-item form-control' placeholder='Ingredient'/>";
+    listItems += "<span class='input-group-addon new-line-item'></span>";
+    listItems += "<input class='quantity new-line-item form-control' placeholder='Amount'/></div>";
+    break;
+    case 'steps':
+    listItems += "<input class='steps new-line-item form-control' placeholder='Add Step'/>";
+    break;
+  }
+  $(listItems).appendTo('#' + list + '_list');
+}

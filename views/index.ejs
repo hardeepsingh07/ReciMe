@@ -13,6 +13,8 @@
  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
  <link rel="stylesheet" href="/stylesheets/style.css">
  <script src="/javascripts/recime.js"></script>
+ <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+ <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
@@ -71,17 +73,41 @@
                <label for="image">Dish Image Link:</label>
                <input class="form-control" id="image"/>
                <br/>
-             </div>
-           </form>
-           <div style="clear:both"></div>
          </div>
-         <div class="modal-footer">
-           <button type="submit" class="btn btn-primary" onclick="submitForm()">Add</button>
-           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-         </div>
+       </form>
+       <div style="clear:both"></div>
      </div>
-
+     <div class="modal-footer">
+       <button type="submit" class="btn btn-primary" onclick="submitForm()">Add</button>
+       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
      </div>
    </div>
+
+ </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    ​
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Recipes</h4>
+      </div>
+      <div class="modal-body">
+        <div data-role="page" id="home">   
+          <div id="list_group">
+            <!--JQuery Data-->
+          </div>     
+        </div>  
+      </div>
+    </div>
+  </div>
+  ​
+</div>
+</div>
+
 </body>
 </html>
